@@ -1,0 +1,93 @@
+<div *ngIf="!isloaded" style="height: 500px; margin-left: 45%;">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="loader"></div>
+
+</div>
+<div class="jumbotron">
+    <div class="container">
+        <img src="https://craftycoin.com/wp-content/uploads/2015/04/Recipes-header.png" style="width: 100%;height:350px;
+        overflow: hidden;" alt="recipe">
+    </div>
+    <h1>My Recipes</h1>
+    <!-- <div class="row card-group">
+        <div class="col-4  mb-3 mt-3 ml" *ngFor="let rec of recipes; let i = index">
+                <div class="ft-recipe">
+                    <div class="ft-recipe__thumb">
+                        <img src={{rec.profileImage}} alt="Card image cap">
+                    </div>
+                    <div class="ft-recipe__content">
+                        <header class="content__header">
+                            <div class="row-wrapper">
+                                <h5 class="trimtext recipe-title">{{rec.recipe}}</h5>
+                                <h2 class="recipe-title">Strawberry Waffle</h2>
+                                <div class="user-rating"></div>
+                            </div>
+                            <ul class="recipe-details">
+                                <li class="recipe-details-item time"><i class="ion ion-ios-clock-outline"></i><span
+                                        class="value">{{rec.time}}</span><span class="title">Minutes</span></li>
+                                <li class="recipe-details-item ingredients"><i
+                                        class="ion ion-ios-book-outline"></i><span
+                                        class="value">{{rec.ingrlist.length}}</span><span
+                                        class="title">Ingredients</span>
+                                </li>
+                                <li class="recipe-details-item servings"><i class="ion ion-ios-heart-outline"></i><span
+                                        class="value">{{rec.recipeLikeCount}}</span><span class="title">Likes</span>
+                                </li>
+                            </ul>
+                        </header>
+                        <p class="description trimtext">{{rec.brief}}</p>
+                        <a (click)="gotoR(rec,rec.recipe)" class="button" style="color:white">Check Recipe</a>
+                    </div>
+                </div>
+        </div>
+    </div> -->
+
+    <div class="row card-group">
+        <div class="col-4  mb-3 mt-3" *ngFor="let rec of recipes; let i = index">
+            <div class="card mb-3 mt-3" style="width: 30rem;">
+                <img class="card-img-top" src={{rec.profileImage}} alt="Card image cap">
+                <div class="card-desc">
+                    <h5 class="recipe-title mt-2">{{rec.recipe}}</h5>
+                    <hr style="height:1px;width:75%;">
+                    <ul class="recipe-details">
+                        <li class="recipe-details-item time ml-5"><i class="ion ion-ios-clock-outline"></i><span
+                                class="value">{{rec.time}}</span><span class="title">Minutes</span></li>
+                        <li class="recipe-details-item ingredients"><i
+                                class="ion ion-ios-book-outline"></i><span
+                                class="value">{{rec.ingrlist.length}}</span><span
+                                class="title">Ingredients</span>
+                        </li>
+                        <li class="recipe-details-item servings mr-3"><i class="ion ion-ios-heart-outline"></i><span
+                                class="value">{{rec.recipeLikeCount}}</span><span class="title">Likes</span>
+                        </li>
+                    </ul>
+                    <p class="trimtext card-text">{{rec.brief}}</p>
+                </div>
+                <a (click)="gotoR(rec,rec.recipe)" class="button ml-5 " style="color:white">
+                    Check Recipe
+                </a>&nbsp;
+                <a (click)="deleteRecipe(rec,rec._id)" class="button" style="color:white">
+                    Remove
+                </a>
+                <!-- <mat-icon class="delete my-cursor" (click)="deleteRecipe(rec,rec._id)">delete
+                </mat-icon>&nbsp; -->
+                <!-- <div class="card-footer text-center">
+                    <mat-icon class="delete my-cursor" (click)="deleteRecipe(rec,rec._id)">delete</mat-icon>&nbsp;
+                    <span *ngIf="rec.recipeLikeCount>0">
+                        <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{rec.recipeLikeCount}}
+                    </span>
+                    <span *ngIf="rec.recipeLikeCount == 0">
+                        <mat-icon>favorite_border</mat-icon>
+                    </span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

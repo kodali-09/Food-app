@@ -1,0 +1,49 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-6">
+            <h2>Remove Categories</h2>
+        </div>
+        <div class="col-6 text-right">
+            <button (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>&nbsp;
+            <button mat-flat-button color="primary" [disabled]="!model.isDataPresent" (click)="get()">Delete
+                Selected</button>
+        </div>
+    </div>
+    <mat-form-field style="width:30%" class="example-full-width">
+        <mat-label>Search Here</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search Here">
+    </mat-form-field>
+    <table *ngIf="model.isDataLoaded" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="select">
+            <th class="text-center" mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </th>
+            <td class="text-center" mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+        <ng-container *ngFor="let column of columns" matColumnDef="{{column.name}}">
+            <th mat-cell class="text-center" *matHeaderCellDef mat-sort-header>{{column.label}}</th>
+            <ng-container *matCellDef="let element">
+                <td class="text-center" mat-cell *ngIf="column.name=='imageUrl'">
+                    <img src={{element[column.name]}} style="height:200px;width:200px;">
+                </td>
+                <td class="text-center" mat-cell *ngIf="column.name=='name'">{{element[column.name]}}</td>
+                <td class="text-center" mat-cell *ngIf="column.name!='name' && column.name!='imageUrl'">
+                    {{element[column.name]}}
+                </td>
+            </ng-container>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

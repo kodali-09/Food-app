@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<title>Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</head>
+<body translate="no">
+<div class="signup__container mt-5">
+<div class="container__child signup__thumbnail">
+
+<div class="thumbnail__content text-center">
+
+<h1 class="heading--primary" style="color: black;">Appetite Crush</h1><br>
+<h2 class="heading--secondary" style="color: black;">Login</h2>
+</div>
+
+<div class="signup__overlay"></div>
+</div>
+<div class="container__child signup__form">
+<form #ref="ngForm" (ngSubmit)="submitForm(ref.value);ref.reset()">
+  <!-- <label for="">Choose role</label>
+  <div class="form-check">
+    <input type="radio" name="role" id="ad" value="admin" ngModel>
+    <label for="ad">Admin</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" name="role" id="u" value="user" ngModel>
+    <label for="u">User</label>
+  </div> -->
+<div class="form-group">
+<label for="username">Username</label>
+<input class="form-control" type="text" name="username" id="username" (change)="enableDisabledFields()" required [(ngModel)]="model.username">
+</div>
+<div class="form-group">
+<label for="password">Password</label>
+<input class="form-control" type="password" name="password" id="password" (change)="enableDisabledFields()" required [(ngModel)]="model.password">
+</div>
+
+<div class="m-t-lg">
+<ul class="list-inline">
+<li>
+<input class="btn btn--form" type="submit" [disabled]="!model.isLoginEnabled" value="Login" />&nbsp;
+<input class="btn btn--form" routerLink="/home" type="submit" value="Cancel" />
+
+</li>
+
+</ul>
+</div>
+</form>
+</div>
+</div>
+</body>
+</html>

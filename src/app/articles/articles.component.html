@@ -1,0 +1,467 @@
+<div *ngIf="!model.isDataLoaded" style="height: 500px; margin-left: 45%;">
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div class="loader"></div>
+
+</div>
+<div class="jumbotron">
+  <div class="container" *ngIf=model.isDataLoaded>
+    <img src="https://respectfoodroles.com/wp-content/uploads/2018/11/Respect-Food-Roles-2810-x-1304-Rev-2.jpg"
+      alt="articlebg image" style="width: 100%;height:350px;
+      overflow: hidden;">
+  </div>
+  <!-- <div class="banner">
+      <h1 class="heading">FOOD ARTICLES</h1>
+      <p class="heading1">There is no love sincerer than the love of food</p>
+    </div> -->
+  <div class="heading">
+    <h1>ARTICLES</h1>
+  </div>
+  <div class="row card-group" *ngIf="model.isDataLoaded">
+    <div class="col-4 mb-3 mt-3" *ngFor="let article of model.articleDataList">
+      <div class="card mb-3 mt-3" style="width: 30rem;">
+        <!-- <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+            src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100" height="100"
+            alt="Card image cap"> -->
+        <img class="card-img-top" [src]="article.imageUrl" alt="article image">
+        <div class="card-desc">
+          <h3 class="trimtext recipe-title mt-2">{{article.title}}</h3>
+          <hr style="height:1px;width:75%;">
+          <ul class="recipe-details">
+            <li class="recipe-details-item ingredients ml-5"><i class="ion ion-ios-book-outline"></i><span
+                class="value">{{article.category.length}}</span><span class="title">Categories</span>
+            </li>
+            <li class="recipe-details-item servings ml-5 mr-2"><i class="ion ion-ios-heart-outline"></i><span
+                class="value">{{article.articleLikeCount}}</span><span class="title">Likes</span>
+            </li>
+          </ul>
+          <p class="trimtext card-text">{{article.description}}</p>
+        </div>
+        <a (click)="articleDisplay(article,article.title)" class="button" style="color:white">Read Article</a>
+        <!-- <div class="card-footer">
+          <span *ngIf="article.articleLikeCount>0">
+            <mat-icon style="color:red">favorite</mat-icon>&nbsp;{{article.articleLikeCount}}
+          </span>
+          <span *ngIf="article.articleLikeCount == 0">
+            <mat-icon>favorite_border</mat-icon>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="card-deck " *ngIf="model.isDataLoaded">
+    <div class="card-item" *ngFor="let articles of model.articleChunkList">
+      <div class="row">
+        <div class="item col-md-3" *ngFor="let article of articles">
+          <div class="card-content">
+            <div class="card-img-top">
+              <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+                src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+                height="100" alt="Card image cap">
+              <div *ngIf="article.imageToDisplay !== undefined" class="card-img-top"
+                [innerHTML]="article.imageToDisplay" style="height: 100;width: 100;"></div>
+            </div>
+            <div class="card-desc">
+              <h3>{{article.title}}</h3>
+              <p>{{article.description}}</p>
+              <a href="#" class="btn-card" (click)="articleDisplay(article._id)">Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!-- </div>-->
+<!-- <h2 class="font-bold h4-text mt-5 ml-5">Tags</h2> -->
+<!-- <div id="demo" class="carousel slide mt-5 ml-5 mr-5" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-2">
+            <div class="onboarding-bubble">
+              <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-mexican" role="button"
+                aria-label="Mexican"><img alt=""
+                  src="https://images.ctfassets.net/3vz37y2qhojh/1IItBb7zCq7TfO0BIo0Iaq/3b6f8533704df043b213033adf43dd27/articles-categories-lowcarb_3x.png"
+                  class="bubble-image" data-pin-nopin="true"><span
+                  class="carousel-caption text micro-caps font-bold bubble-text">Low-Carb</span></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="onboarding-bubble">
+              <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-swedish" role="button"
+                aria-label="Swedish"><img alt=""
+                  src="https://images.ctfassets.net/3vz37y2qhojh/12nVYE072XMFGYA5BRqXPU/34fc3d49f0ce8ba18cdff36f7c7fa49e/articles-categories-vegetarian_3x.png"
+                  class="bubble-image" data-pin-nopin="true"><span
+                  class="carousel-caption text micro-caps font-bold bubble-text">Vegetarian</span></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="onboarding-bubble">
+              <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-portuguese" role="button"
+                aria-label="Portuguese"><img alt=""
+                  src="https://images.ctfassets.net/3vz37y2qhojh/5HdwcvFLtkbDNChdxYI2rk/462bdf410dca9e88b12c7133981de909/articles-categories-dessert_3x.png"
+                  class="bubble-image" data-pin-nopin="true"><span
+                  class="carousel-caption text micro-caps font-bold bubble-text">Dessert</span></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="onboarding-bubble">
+              <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-southern" role="button"
+                aria-label="Southern / Soul Food"><img alt=""
+                  src="https://images.ctfassets.net/3vz37y2qhojh/2PnPIjig6sCSMe7i5wQupT/7d27950616c7a404cc8201242008938e/articles-categories-chicken_3x.png"
+                  class="bubble-image" data-pin-nopin="true"><span
+                  class="carousel-caption text micro-caps font-bold bubble-text">Chicken</span></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="onboarding-bubble">
+              <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-spanish" role="button"
+                aria-label="Spanish"><img alt=""
+                  src="https://images.ctfassets.net/3vz37y2qhojh/3G3fDIxnbOBSKHpNPqSMUe/974192ee632870bd858344758e85cde9/articles-categories-healthy_3x.png"
+                  class="bubble-image" data-pin-nopin="true"><span
+                  class="carousel-caption text micro-caps font-bold bubble-text">Healthy</span></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="onboarding-bubble">
+              <div class="account-bubble type-image bubble-cuisines" data-value="cuisine-thai" role="button"
+                aria-label="Thai"><img alt=""
+                  src="https://images.ctfassets.net/3vz37y2qhojh/DQ1U6Ce6RYqenhH1BDrL2/69dc5ed18a12f9dfaeef07d99f3c1433/articles-categories-cookies_3x.png"
+                  class="bubble-image" data-pin-nopin="true"><span
+                  class="carousel-caption text micro-caps font-bold bubble-text">Cookies</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div> -->
+<!-- <br> -->
+<!-- <div class="container mt-5 mb-2">
+    <img src="http://www.indobase.com/recipes/rec-images/fish-fry.jpg" style="width:100%;">
+    <div class="text-block">
+      <p class="font-bold micro-caps">Recipe Roundup</p>
+      <h2 class="font-bold h4-text">Lucky Foods for the Lunar New Year </h2>
+      <p class="p2-text" style="-webkit-box-orient: vertical;">Around the world, preparations are being
+        made to usher in the beginning of a new lunar year. We've pulled together a collection of east Indian recipes
+        to help you eat your way to good fortune in the new year.</p>
+    </div>
+  </div> -->
+<!-- <h2 class="font-bold h4-text mt-5 mb-2 ml-2">Featured Articles</h2> -->
+<!-- <div class=row>
+    <div class="col-sm-6 ">
+      <ul class="list-unstyled ml-3">
+        <li class="media">
+          <img class="d-flex mr-3" src="https://www.cdc.gov/foodsafety/images/comms/GettyImages-898001644-300px.png"
+            alt="Generic placeholder image" style="height:20%;width:20%;">
+          <div class="media-body">
+            <p class="font-bold micro-caps mt-0 mb-1">Yummly Cooking Story</p>
+            <h3 class="font-bold p2-text">What to Eat Now: January</h3>
+          </div>
+        </li>
+        <li class="media my-4">
+          <img class="d-flex mr-3"
+            src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/140/2019/12/08152617/CNY-Eve-Abundance-Dinner-Buffet-01.jpg"
+            alt="Generic placeholder image" style="height:20%;width:20%;">
+          <div class="media-body">
+            <p class="font-bold micro-caps mt-0 mb-1">Yummly Cooking Story</p>
+            <h3 class="font-bold p2-text">Mouth watering Sweets</h3>
+          </div>
+        </li>
+        <li class="media">
+          <img class="d-flex mr-3"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHlQZmjROwYYUVhDrfi7Xd15CLwdiettJAPFDiuvcjVC36rP5X"
+            alt="Generic placeholder image" style="height:20%;width:20%;">
+          <div class="media-body">
+            <p class="font-bold micro-caps mt-0 mb-1">Yummly Cooking Story</p>
+            <h3 class="font-bold p2-text">Lets Eat Indian Today</h3>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <div class="con">
+        <img
+          src="https://369t7u43n93dgc5pt43uc681-wpengine.netdna-ssl.com/wp-content/uploads/2019/02/mix-match-meal-prep-16.jpg"
+          alt="Nature" style="width:100%;height: 100%;">
+        <div class="featured">
+          <p class="font-bold micro-caps">Recipe Roundup</p>
+          <h2 class="font-bold h4-text">Easy Meal Prep Recipes for Healthy Lunches on the Go</h2>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <div class="container mt-5">
+    <img src="http://www.shopempire.co.in/wp-content/uploads/2019/08/masala-omlette.jpg" alt="Nature"
+      style="width:100%;">
+    <div class="featured-again">
+      <p class="font-bold micro-caps">kitchen Tips</p>
+      <h2 class="font-bold h4-text">Easy Meal Prep Recipes for Healthy Dinners on the Go</h2>
+    </div>
+  </div> -->
+
+<!-- <div class="card-deck mt-5 ml-5 mr-5 mb-5">
+    <div class="card">
+      <a class="card-block stretched-link text-decoration-none" href="/"></a>
+      <img class="card-img-top" src="https://images.herzindagi.info/image/2019/Sep/easy-kitchen-hacks-main.jpg"
+        alt="Card image" style="width:100%">
+      <div class="card-body display-5"><a href="#">Kitchen Tips</a>
+        <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+         <p>Meal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+          We put together 21 tips to kick-start your meal planning strategy.</p> 
+      </div>
+    </div>
+    <div class="card" style="width: 15rem;height: 22rem">
+      <img class="card-img-top" src="https://etimg.etb2bimg.com/photo/69972172.cms" alt="Card image" style="width:100%">
+      <div class="card-body display-5"><a href="#">Recipe RoundUp</a></div>
+      <div class="card-footer">
+        <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+        <p>eal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+          We put together 21 tips to kick-start your meal planning strategy.</p>
+      </div>
+    </div>
+    <div class="card">
+      <a class="card-block stretched-link text-decoration-none" href="/"></a>
+      <img class="card-img-top"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgv_HXAj96PZ4R6T_CWGZkHEDAIUose04pAf8_DlX8obBDkWlzrA&s"
+        alt="Card image" style="width:100%">
+      <div class="card-body display-5"><a href="#">Kitchen Tips</a></div>
+      <div class="card-footer">
+        <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+        <p>eal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+          We put together 21 tips to kick-start your meal planning strategy.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://i.pinimg.com/originals/16/21/33/162133d2ac8fb7c4596df5a76664b54b.jpg"
+        alt="Card image" style="width:100%">
+      <div class="card-body display-5"><a href="#">Appetizer Cooking Story</a></div>
+      <div class="card-footer">
+        <h2>21 Tips To Kick-Start Your Meal Planning Strategy</h2>
+        <p>eal planning can go a long way to help you stay healthy and organized, but it's easier said than done.
+          We put together 21 tips to kick-start your meal planning strategy.</p>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <div id="dataInfo">
+		<h2>Information</h2>
+		<div id="myCarousel" class="carousel slide" >
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="card">
+								<img class="card-img-top img-fluid" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+								 height="100" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title">Card 1</h4>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little
+										bit longer.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<img class="card-img-top img-fluid" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+								 height="100" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title">Card 2</h4>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little
+										bit longer.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<img class="card-img-top img-fluid" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+								 height="100" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title">Card 3</h4>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little
+										bit longer.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="card">
+								<img class="card-img-top img-fluid" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+								 height="100" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title">Card 4</h4>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little
+										bit longer.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<img class="card-img-top img-fluid" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+								 height="100" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title">Card 5</h4>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little
+										bit longer.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<img class="card-img-top img-fluid" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+								 height="100" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title">Card 6</h4>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little
+										bit longer.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="card">
+								<img class="card-img-top img-fluid" src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+								 height="100" alt="Card image cap">
+								<div class="card-body">
+									<h4 class="card-title">Card 7</h4>
+									<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little
+										bit longer.</p>
+									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+
+	</div>
+  -->
+<!-- <div class="row">
+    <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
+      <div class="MultiCarousel-inner">
+        <div class="item">
+          <div class="card-content">
+            <div class="card-img">
+              <img src="https://placeimg.com/380/230/nature" alt="">
+              <span>
+                <h4>heading</h4>
+              </span>
+            </div>
+            <div class="card-desc">
+              <h3>Heading</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo,
+                perspiciatis
+                voluptas totam</p>
+              <a href="#" class="btn-card">Read</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-content">
+            <div class="card-img">
+              <img src="https://placeimg.com/380/230/animals" alt="">
+              <span>
+                <h4>heading2</h4>
+              </span>
+            </div>
+            <div class="card-desc">
+              <h3>Heading2</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo,
+                perspiciatis
+                voluptas totam</p>
+              <a href="#" class="btn-card">Read</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-content">
+            <div class="card-img">
+              <img src="https://placeimg.com/380/230/tech" alt="">
+              <span>
+                <h4>heading3</h4>
+              </span>
+            </div>
+            <div class="card-desc">
+              <h3>Heading3</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo,
+                perspiciatis
+                voluptas totam</p>
+              <a href="#" class="btn-card">Read</a>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-content">
+            <div class="card-img">
+              <img src="https://placeimg.com/380/230/animals" alt="">
+              <span>
+                <h4>heading2</h4>
+              </span>
+            </div>
+            <div class="card-desc">
+              <h3>Heading2</h3>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, voluptatum! Dolor quo,
+                perspiciatis
+                voluptas totam</p>
+              <a href="#" class="btn-card">Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary leftLst"></button>
+      <button class="btn btn-primary rightLst"></button>
+    </div>
+  </div> -->
+<!-- <div [innerHTML]="model.articleDataList[2].content[h1]"></div>  -->
+
+<!-- <ngb-carousel *ngIf="model.isDataLoaded">
+    <div class="row" style="margin-left: 10%;">
+      <div class="col-md-4">
+        <ng-template ngbSlide *ngFor="let articles of model.articleChunkList;index as i">
+          <div class="item col-md-3" *ngFor="let article of articles;index as j">
+            <div class="card-content">
+              <div class="card-img-top">
+                <img *ngIf="article.imageToDisplay === undefined" class="card-img-top"
+                  src="https://images.freeimages.com/images/large-previews/85a/daisy-s-1375598.jpg" width="100"
+                  height="100" alt="Card image cap">
+                <div *ngIf="article.imageToDisplay !== undefined" class="card-img-top" [innerHTML]="article.imageToDisplay" 
+                style="height: 100;width: 100;"></div>
+              </div>
+              <div class="card-desc">
+                <h3>{{article.title}}</h3>
+                <p>{{article.description}}</p>
+                <a href="#" class="btn-card">Read</a>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ngb-carousel> -->

@@ -1,0 +1,105 @@
+<style>
+  .vl {
+    border-left: 6px solid green;
+    height: 50px;
+    position: absolute;
+    top: 0;
+  }
+</style>
+<div class="row quick-action-toolbar">
+  <div class="col-md-12 grid-margin">
+    <div class="card">
+      <div class="card-header d-block d-md-flex">
+        <h5 class="mb-0">welcome {{username}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row quick-action-toolbar">
+  <div class="col-md-12 grid-margin">
+    <div class="card">
+      <div class="card-header d-block d-md-flex">
+        <h5 class="mb-0">Recent Activity</h5>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Recipes</h4>
+          <button type="button" (click)="addRecipe()" class="btn btn-outline-info btn-lg btn-block">Add
+            Recipe</button><br>
+          <button type="button" (click)="removeRecipe()" class="btn btn-outline-danger btn-lg btn-block">Remove
+            Recipe</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Articles</h4>
+          <button type="button" (click)="addArticle()" class="btn btn-outline-info btn-lg btn-block">Add
+            Articles</button><br>
+          <button type="button" (click)="removeArticles()" class="btn btn-outline-danger btn-lg btn-block">Remove Articles</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Category</h4>
+          <button type="button" (click)="addCategory()" class="btn btn-outline-info btn-lg btn-block">Add
+            Category</button><br>
+          <button type="button" (click)="removeCategories()" class="btn btn-outline-danger btn-lg btn-block">Remove Category</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row quick-action-toolbar">
+    <div class="col-md-12 grid-margin">
+      <div class="card">
+        <div class="card-header d-block d-md-flex">
+          <h5 class="mb-0">Quick Actions</h5>
+        </div>
+        <div class="d-md-flex row m-0 quick-action-btns" role="group" aria-label="Quick action buttons">
+          <div class="col-sm-6 col-md-4 p-4 text-center btn-wrapper">
+            <button type="button" (click)="addAdmin()" class="btn btn-success px-0"> <i class="icon-user mr-2"></i> Add Admin</button>
+          </div>
+          <div class="col-sm-6 col-md-4 p-4 text-center btn-wrapper">
+            <button type="button" (click)="editProfile()"class="btn btn-warning px-0"><i class="icon-docs mr-2"></i> Edit Profile</button>
+          </div>
+          <div class="col-sm-6 col-md-4 p-4 text-center btn-wrapper">
+            <button type="button" class="btn btn-info px-0"><i class="icon-folder mr-2"></i> Check Usage</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Recent Actions</h2>
+  <mat-form-field style="width:100%" class="example-full-width">
+    <mat-label>Search Here</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search Here">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container *ngFor="let column of columns" matColumnDef="{{column.name}}">
+      <th mat-cell *matHeaderCellDef mat-sort-header>{{column.label}}</th>
+      <ng-container *matCellDef="let element">
+        <td mat-cell>
+          {{element[column.name]}}
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

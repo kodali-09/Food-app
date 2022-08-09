@@ -1,0 +1,68 @@
+<div class="jumbotron">
+    <div class="row py-5 px-4">
+        <div class="col-xl-10 col-md-8 col-sm-10 mx-auto">
+            <div class="bg-white cont shadow rounded overflow-hidden" >
+        <h1 class="text-primary"><i class="fa fa-user" aria-hidden="true"></i>Edit Profile</h1>
+          <hr>
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-3">
+            <div class="text-center">
+                <img [src]="imageUrl" class="avatar">
+                <h6>Upload a different photo...</h6>
+                <input type="file" name="photo" id="pc" #fileUploader ngModel (input)="getImageFile($event.target.files[0])">
+                <span *ngIf="!model.isImageUploaded" style="color: blue;">{{model.message}}</span>
+                <br>
+                <br>
+                <button class="btn btn-info " (click)="removePhoto()">Remove Photo</button>
+              
+            </div>
+          </div>
+          
+          <!-- edit form column -->
+          <div class="col-md-9 personal-info">
+            <h3>Personal info</h3>
+            
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" (change)="validateUsername()" [(ngModel)]="model.username">
+                    <span *ngIf="!model.isUsernameValid" style="color: red;padding-left: 1.75rem;">{{model.usernameErrMsg}}</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="emailid" (change)="validateEmail()" [(ngModel)]="model.emailid">
+                    <span *ngIf="!model.isEmailIdValid" style="color: red;padding-left: 1.75rem;">Invalid email
+                        address</span>
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="pswd" (change)="validatePassword()" [(ngModel)]="model.password">
+                    <span *ngIf="!model.isPasswordValid" style="color: red;padding-left: 1.75rem;">Password must contain
+                        atleast 8
+                        chars
+                        with atleast 1 number</span></div>
+                <div class="form-group">
+                    <label for="password-confirm">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm pswd" (change)="validateConfirmPassword()"
+                        [(ngModel)]="model.confirmPassword">
+                    <span *ngIf="!model.isPasswordMatched" style="color: red;padding-left: 1.75rem;">Password does not
+                        match !!!</span>
+                </div>
+                <div>
+                    <button class="btn btn-success" type="submit" [disabled]="!model.isSaveEnabled" (click)="submitForm()">&nbsp;&nbsp;SAVE &nbsp;&nbsp;</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-danger " (click)="cancel()">CANCEL</button>
+                </div>
+            </form>
+          </div>
+      </div>
+    </div>
+        </div>
+    </div>
+</div>
+
+
+
+

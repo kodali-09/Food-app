@@ -1,0 +1,177 @@
+<head>
+    <style>
+        #sidebar {
+            z-index: 999;
+            position: fixed;
+            width: 190px;
+            height: 100%;
+            left: 0px;
+            overflow-y: auto;
+            background: #455963;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        h1.main-app-name {
+            margin-left: 8px;
+            color: #fff;
+            display: block;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 3px 0px;
+        }
+
+        .main-toolbar {
+            background-color: #e22a69;
+            font-size: 20px;
+            line-height: 52px;
+            text-align: center;
+        }
+
+
+        #sidebar ul li a {
+            padding: 15px 10px;
+            font-size: 17px;
+            display: block;
+            color: #fff;
+            border-bottom: 1px solid #939fa5;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        #sidebar ul li a:hover {
+            color: #263238;
+            background: #fff;
+        }
+
+        #sidebar ul ul a {
+            font-size: 16px !important;
+            padding-left: 30px !important;
+            background: palegoldenrod;
+        }
+
+        a.dropdown-toggle.collapsed.dropdown-toggle::after {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            vertical-align: 5px;
+            content: "";
+            border-bottom: 5px solid;
+            border-right: 5px solid transparent;
+            border-top: 0;
+            float: right;
+            margin-top: 10px;
+        }
+
+        #sidebar .dropdown-toggle::after {
+            float: right;
+            margin-top: 10px;
+        }
+
+        #sidebar .icon {
+            padding-right: 15px;
+        }
+    </style>
+    <title>Appetite Crush</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="nav-container">
+        <mat-toolbar class="main-toolbar">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h1 class="main-app-name">Appetite Crush</h1>
+        </mat-toolbar>
+        <mat-sidenav-container class="main-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 60 : 0">
+            <mat-sidenav #sidenav mode="side" opened id="sidebar" [style.marginTop.px]="mobileQuery.matches ? 60 : 0"
+                [fixedInViewport]=true [fixedTopGap]=60 [fixedBottomGap]=0
+                [mode]="mobileQuery.matches ? 'over' : 'side'">
+
+                <ul class="list-unstyled">
+
+                    <li>
+                        <a class="my-cursor" routerLink="home"><span class="icon"><i
+                                    class="fas fa-info-circle"></i></span>Feed</a>
+                    </li>
+
+                    <li>
+                        <a class="my-cursor" routerLink="browse"><span class="icon"><i
+                                    class="fas fa-camera"></i></span>Browse</a>
+                    </li>
+                    <li>
+                        <a class="my-cursor" routerLink="articles"><span class="icon"><i
+                                    class="fas fa-mobile-alt"></i></span>Articles</a>
+                    </li>
+                    <li *ngIf="ls.userLoginStatus && !ls.adminLoginStatus">
+                        <a class="my-cursor" routerLink="userdashboard"><span class="icon">
+                                <mat-icon>person</mat-icon>
+                            </span>My
+                            Dashboard</a>
+                    </li>
+                    <li *ngIf="ls.adminLoginStatus">
+                        <a class="my-cursor" (click)="myArticles()"><span class="icon">
+                                <mat-icon>folder</mat-icon>
+                            </span>My Articles</a>
+                    </li>
+                    <li *ngIf="ls.adminLoginStatus">
+                        <a class="my-cursor" (click)="myRecipes()"><span class="icon">
+                                <mat-icon>folder</mat-icon>
+                            </span>My Recipes</a>
+                    </li>
+
+                    <li *ngIf="ls.adminLoginStatus">
+                        <a routerLink="admindashboard"><span class="icon">
+                                <mat-icon>person</mat-icon>
+                            </span>My
+                            Dashboard</a>
+                    </li>
+                    <li *ngIf="!ls.userLoginStatus">
+                        <a class="my-cursor" routerLink="login"><span class="icon">
+                                <mat-icon>person_outline</mat-icon>
+                            </span>Login</a>
+                    </li>
+                    <li *ngIf="ls.userLoginStatus">
+                        <a class="my-cursor" routerLink="login"><span class="icon">
+                                <mat-icon class="power_settings_new my-cursor">power_settings_new
+                                </mat-icon>
+                            </span>Logout</a>
+                    </li>
+                    <li *ngIf="!ls.userLoginStatus">
+                        <a class="my-cursor" routerLink="register"><span class="icon">
+                                <mat-icon>group</mat-icon>
+                            </span>Register</a>
+                    </li>
+                </ul>
+            </mat-sidenav>
+
+            <mat-sidenav-content>
+                <router-outlet></router-outlet>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+        <!-- <div class="col-10 mt-5">
+            <router-outlet></router-outlet>
+        </div> -->
+    </div>
+</body>

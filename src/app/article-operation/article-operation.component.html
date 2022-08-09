@@ -1,0 +1,71 @@
+<div class="jumbotron">
+    <h1>ADD Articles</h1>
+    <!-- <form #ref="ngForm" (ngSubmit)="submitForm(ref.value);"> -->
+    <div *ngIf="!model.isDataLoaded" style="height: 500px; margin-left: 45%;">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="loader"></div>
+    </div>
+    <div *ngIf="model.isDataLoaded">
+        <div class="form group">
+            <div>
+                <label for="title">Title</label>
+                <input class="form-control" type="text" style="width:60vw" name="title" [(ngModel)]="model.title"
+                    id="title" required>
+            </div>
+            <br>
+            <div>
+                <label for="category">Category</label>
+                <ng-multiselect-dropdown name="category" style="width:60vw" [data]="model.categoryNameList"
+                    [(ngModel)]="model.selectedItems" class="container" [settings]="model.dropdownSettings" required>
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="form-group shadow-textarea">
+                <label for="description">Description</label>
+                <input class="form-control" type="text" style="width:60vw" name="description" 
+                    [(ngModel)]="model.description" placeholder="give brief description here..." required>
+            </div>
+            <div>
+                <label>Upload Article Image</label> <br>
+                <input type="file" #fileUploader name="image" id="pc" ngModel (input)="getImageFile($event.target.files[0])">
+                <!-- <span *ngIf="!model.isImageUploaded" style="color: red;padding-left: 1.75rem;">{{model.message}}</span> -->
+            </div>
+            <div class="image-preview mb-3">
+                <img *ngIf="model.isImageUploaded" [src]="imageObj.imageUrl" alt="Preview Image"
+                    class="image-preview__image" style="width:500px;height:350px" />
+                <span *ngIf="!model.isImageUploaded" style="color: blue;"
+                    class="image-preview__default-text">{{model.message}}</span>
+            </div>
+            <div>
+                <label>Content</label>
+                <textarea class="form-control z-depth-1" style="width:60vw;border: 1px solid gray ;" name="content" rows="20"
+                    [(ngModel)]="model.content" placeholder="write your content here..." required></textarea>
+            </div>
+            <!-- <label>Content</label>
+        <div class="row">
+            <div class="col-md-12"> -->
+            <!-- <quill-editor required [styles]="{'min-height': '300px','max-height': '300px'}"
+                    [(ngModel)]="model.content" [(formControl)]="model.articleContent" [placeholder]="placeholder">
+                </quill-editor> -->
+            <br>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input class="form-control" type="text" style="width:60vw" name="author" [(ngModel)]="model.author"
+                    id="author" required>
+            </div>
+            <!-- </div>
+        </div> -->
+        </div>
+    </div>
+    <button type="button" (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>
+    <button type="button" (click)="postArticle()" [disabled]="!isFormPopulated() || !model.isDataLoaded"
+        class="btn btn-outline-success" style="margin-left:68%;">Post</button>
+</div>
+<!-- </form> -->
+<!-- </form> -->

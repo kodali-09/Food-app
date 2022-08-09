@@ -1,0 +1,34 @@
+<div class="jumbotron">
+    <h3>ADD CATEGORY </h3>
+    <form>
+    <div class="form-group">
+        <label>CATEGORY</label>
+        <input type="text" [ngModelOptions]="{standalone: true}" class="form-control" style="width:30%" placeholder="enter category title" (change)="validateCategoryList()"
+            [(ngModel)]="model.categoryName" required>
+        <span *ngIf="model.isCategoryExists"style="color: red;padding-left: 1.75rem;">category already exists.choose another</span>
+    </div>
+    <div class="form-group">
+        <label for="filePicker">Select image</label><br>
+        <input type="file" name="image"  id="filePicker" #fileUploader (change)="handleFileSelect($event)">
+        <!-- <span *ngIf="!model.isImageUploaded" style="color: red;padding-left: 1.75rem;">{{model.message}}</span> -->
+        <!-- <label for="img">Select image:</label>
+        <input type="file" id="img" name="img" accept="image/*"> -->
+    </div>
+
+    <div class="image-preview mb-3">
+        <img *ngIf="model.isImageUploaded" [src]="model.base64textString" alt="Preview Image"
+            class="image-preview__image" />
+        <span *ngIf="!model.isImageUploaded" class="image-preview__default-text">{{model.message}}</span>
+    </div>
+    <div>
+        <button type="button" (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>
+        <button type="button" (click)="addCategory()" [disabled]="isValidDetails() === false"
+            class="btn btn-outline-success" style="margin-left:30%;">ADD</button>
+        <!-- <ul class="list-inline">
+            <li>
+                <button class="btn btn--form" [disabled]="isValidDetails() === false" (click)="addCategory()"  value="ADD" >ADD</button>
+            </li>
+        </ul> -->
+    </div>
+</form>
+</div>

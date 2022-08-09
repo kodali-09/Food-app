@@ -1,0 +1,21 @@
+.avatar {
+    vertical-align: middle;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+  }
+  .cont {
+    border: 1px solid black;
+    background-color:white;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+  }
+
+  .jumbotron {
+    background: #F6F0EA;
+    background: -webkit-linear-gradient(to right, #F6F0EA, #F1DFD1 );
+    background: linear-gradient(to right, #F6F0EA, #F1DFD1 );
+    min-height: 100vh;
+}

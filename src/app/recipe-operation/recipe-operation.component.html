@@ -1,0 +1,168 @@
+n<div class="jumbotron">
+  <h2>Add Recipe</h2>
+  <form  class="example-form" #ref2="ngForm" (ngSubmit)="submitRecipe(ref2.value);">        
+      <mat-form-field style="width:60vw" class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="model.recipe" placeholder="Name of recipe" name="recipe" id="recipe" ngModel>
+      </mat-form-field>
+      <br>
+      <div>
+          <label>Upload Recipe Image</label> <br> 
+          <input type="file" #fileUploader name="photo" id="pc" ngModel (input)="getImageFile($event.target.files[0])">
+      </div>
+      <img [src]="imgUrl" alt="" style="width:500px;height:350px">
+      <br>
+      <mat-form-field style="width:60vw" class="example-full-width">
+          <mat-label>Author</mat-label>
+          <input matInput [(ngModel)]="model.author" type="text" placeholder="Author" name="author"
+          id="author" ngModel>
+      </mat-form-field>
+      <br>
+      <mat-form-field style="width:60vw" class="example-full-width">
+          <mat-label>Brief</mat-label>
+          <textarea matInput name="brief" rows="2" [(ngModel)]="model.brief" placeholder="give brief here" ngModel></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field style="width:60vw" class="example-full-width">
+          <mat-label>Category</mat-label>
+          <mat-select [formControl]="category" multiple>
+            <mat-select-trigger>
+              {{category.value ? category.value[0] : ''}}
+              <span *ngIf="category.value?.length > 1" class="example-additional-selection">
+                (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let category of categoryList1" [value]="category">{{category}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      <br>
+      <mat-form-field style="width:60vw" class="example-full-width">
+          <mat-label>Time in minutes.</mat-label>
+          <input matInput [(ngModel)]="model.time" type="number" placeholder="Time in minutes." name="time" id="time" ngModel>
+      </mat-form-field>
+
+      <br>
+      <h2>Add Ingredients</h2>
+      <form [formGroup]="userTable">
+          <table class="table table-border">
+            <thead class="text-nowrap">
+              <th>Name</th>
+              <th>value</th>
+              <th>Units</th>
+              <th>Note</th>
+              <th><button style="float: right;" mat-raised-button type="submit" (click)="addRow()">Add Ingredient</button>
+              </th>
+            </thead>
+            <tbody>
+              <ng-container formArrayName="tableRows" *ngFor="let group of getFormControls.controls ; let i=index">
+                <tr *ngIf="group.get('isEditable').value" [formGroupName]="i">
+                  <td>
+                    <mat-form-field>
+                      <input matInput type="text" formControlName="name" placeholder="Name">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field>
+                      <input matInput type="text" formControlName="value" placeholder="1 or 2/3 or 1.5 etc..">
+                    </mat-form-field>
+                  </td>            
+                  <td>
+                    <mat-form-field>
+                      <input matInput type="text" formControlName="units" placeholder="ml or cups or mg etc..">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field>
+                      <input matInput type="text" formControlName="notes" placeholder="Any warning..">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-icon class="delete my-cursor" (click)="deleteRow(i)">delete_forever</mat-icon>
+                    <mat-icon class="done my-cursor" (click)="doneRow(group)">done</mat-icon>
+                  </td>
+                </tr>
+                <tr *ngIf="!group.get('isEditable').value">
+                  <td>
+                    {{group.get('name').value}}
+                  </td>
+                  <td>
+                    {{group.get('value').value}}
+                  </td>
+                  <td>
+                      {{group.get('units').value}}
+                  </td>
+                  <td>
+                      {{group.get('notes').value}}
+                  </td>
+                  <td>
+                    <mat-icon class="edit my-cursor" (click)="editRow(group)">edit</mat-icon>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+          <div class="action-container">
+            <button style="float: left;" mat-raised-button [disabled]="userTable.invalid" type="submit" (click)="submitForm()">Submit</button>
+          </div>
+        </form>
+        
+        
+        <!--instruction table starts here-->
+        <form [formGroup]="userTable1">
+          <table class="table table-border">
+            <thead class="text-nowrap">
+              <th>Instructions</th>
+              <th><button style="float: right;" mat-raised-button type="submit" (click)="addRow1()">Add Instruction</button>
+              </th>
+            </thead>
+            <tbody>
+              <ng-container formArrayName="tableRows1" *ngFor="let group of getFormControls1.controls ; let i=index">
+                <tr *ngIf="group.get('isEditable').value" [formGroupName]="i">
+                  <td>
+                    <mat-form-field style="width:60vw" class="example-full-width">
+                      <input matInput type="text" formControlName="instr">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-icon class="delete my-cursor" (click)="deleteRow1(i)">delete_forever</mat-icon>
+                    <mat-icon class="done my-cursor" (click)="doneRow1(group)">done</mat-icon>
+                  </td>
+                </tr>
+                <tr *ngIf="!group.get('isEditable').value">
+                  <td>
+                    {{group.get('instr').value}}
+                  </td>
+                  <td>
+                    <mat-icon class="edit my-cursor" (click)="editRow1(group)">edit</mat-icon>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+          <div class="action-container">
+            <button style="float: left;" mat-raised-button type="submit" (click)="submitForm1()">Submit</button>
+            <br>
+          </div>
+        </form>
+    
+      <!--instruction table ends here-->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!-- <button type="button" (click)="cancel()" class="btn btn-outline-danger waves-effect">Cancel</button>-->
+      
+        <button class="btn btn-outline-success float-md-right waves-effect" [disabled]="!isFormPopulated()"  type="submit">Add Recipe</button> 
+      
+  </form>
+</div>

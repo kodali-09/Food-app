@@ -1,0 +1,149 @@
+/* #sidebar {
+    z-index: 999;
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    left: 0px;
+    overflow-y: auto;
+    background: #455963;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar .sidebar-header a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 5px 0px;
+}
+
+#sidebar .sidebar-header {
+    background-color: #e22a69;
+    font-size: 20px;
+    line-height: 52px;
+    text-align: center;
+}
+
+#sidebar ul li a {
+    padding: 15px 10px;
+    font-size: 17px;
+    display: block;
+    color: #fff;
+    border-bottom: 1px solid #939fa5;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+#sidebar ul li a:hover {
+    color: #263238;
+    background: #fff;
+}
+
+#sidebar ul ul a {
+    font-size: 16px !important;
+    padding-left: 30px !important;
+    background: palegoldenrod;
+}
+
+a.dropdown-toggle.collapsed.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    vertical-align: 5px;
+    content: "";
+    border-bottom: 5px solid;
+    border-right: 5px solid transparent;
+    border-top: 0;
+    float: right;
+    margin-top: 10px;
+}
+
+#sidebar .dropdown-toggle::after {
+    float: right;
+    margin-top: 10px;
+}
+
+#sidebar .icon {
+    padding-right: 15px;
+} */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.is-mobile .main-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+h1.main-app-name {
+    margin-left: 8px;
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 3px 0px;
+}
+
+.main-toolbar {
+    background-color: #e22a69;
+    font-size: 20px;
+    line-height: 52px;
+    text-align: center;
+}
+
+.main-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.is-mobile .main-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+`<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+}
+
+#snav {
+    width: 250px;
+    height: 100%;
+    left: 0px;
+    overflow-y: auto;
+    background: #455963;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#snav ul li a {
+    padding: 15px 10px;
+    font-size: 17px;
+    display: block;
+    color: #fff;
+    border-bottom: 1px solid #939fa5;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+#snav ul li a:hover {
+    color: #263238;
+    background: #fff;
+}
+
+#snav .icon {
+    padding-right: 15px;
+}

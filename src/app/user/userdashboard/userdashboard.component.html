@@ -1,0 +1,72 @@
+<div class="jumbotron">
+    
+<div class="row py-5 px-4">
+    <div class="col-xl-10 col-md-8 col-sm-10 mx-auto">
+
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 backgr">
+                <div class="media align-items-end profile-header">
+                    <div class="profile mr-3"><img [src]="model.imageUrl" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a (click)="editDetails()" class="btn btn-sm btn-block backgr text-white">Edit profile</a></div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0">{{model.username}}</h4>
+                        <p class="small mb-4"> <i class="fa fa-envelope mr-2"></i>{{model.emailid}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">{{model.noOfLikesForRecipes}}</h5><small class="text-muted"><i class="fa fa-thumbs-up mr-1"></i> Likes Recipes</small>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">{{model.noOfLikesForArticles}}</h5><small class="text-muted"> <i class="fa fa-thumbs-up mr-1"></i> Likes Articles</small>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                </div>
+                <div class="row">
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Recipes ({{model.noOfRecipes}})</h4>
+                                <img class="card-img-top"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ8w8QR9wH5ew-KSUstPhT_vzSv6Kx77ZBysE0J4cBk5BgM-pJC&usqp=CAU">
+                            </div>
+                            <div class="card-footer">
+                                <mat-icon class="add my-cursor" (click)="addRecipes()">add</mat-icon>
+                                <mat-icon class="visibility my-cursor" (click)="myRecipes()">remove_red_eye</mat-icon>
+                                <mat-icon class="delete my-cursor" (click)="removeSelectedRecipes()">delete</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Articles ({{model.noOfArticles}})</h4>
+                                <img class="card-img-top"
+                                    src="https://www.geisinger.org/health-and-wellness/wellness-articles/2018/01/19/14/09/-/media/OneGeisinger/Images/ghs/health-and-wellness/Wellness-Articles/2018/January/2018-1-wellness-6-food-to-boost-web.jpg">
+                            </div>
+                            <div class="card-footer">
+                                <mat-icon class="add my-cursor" (click)="addArticles()">add</mat-icon>
+                                <mat-icon class="visibility my-cursor" (click)="myArticles()">remove_red_eye</mat-icon>
+                                <mat-icon class="delete my-cursor" (click)="removeSelectedArticles()">delete</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div><!-- End profile widget -->
+
+    </div>
+</div>
+
+</div>
+</div>
+
+
+

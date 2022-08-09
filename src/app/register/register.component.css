@@ -1,0 +1,151 @@
+body {
+    font: 100% / 1.414 "Open Sans", "Roboto", arial, sans-serif;
+  }
+  
+  a[type="submit"] {
+    -webkit-transition: all .25s ease-in;
+    transition: all .25s ease-in;
+  }
+  
+  .signup__container {
+    position: absolute;
+    top: 2%;
+    right: 0;
+    left: 0;
+    margin-top:auto;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+    width: 50rem;
+    height: 40rem;
+    border-radius: 0.1875rem;
+    box-shadow: 0px 0.1875rem 0.4375rem rgba(0, 0, 0, 0.25);
+  }
+  
+  .signup__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container__child {
+    width: 50%;
+    height: 100%;
+    color: #fff;
+  }
+  
+  .signup__thumbnail {
+    position: relative;
+    padding: 2rem;
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+    background: url(https://png.pngtree.com/thumb_back/fw800/background/20190222/ourmid/pngtree-crayfish-food-food-condiment-black-horizontal-banner-goodsseasoningblackhorizontal-bannerdelicious-image_50376.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+  }
+  .thumbnail__logo,
+  .thumbnail__content,
+  .thumbnail__content {
+      margin-left: 50px;
+    align-self: center;
+  }
+  h1,
+  h2 {
+    font-weight: 300;
+    color: white;
+  }
+  
+  .heading--primary {
+    font-size: 1.999rem;
+  }
+  
+  .heading--secondary {
+    font-size: 1.414rem;
+  }
+  
+  
+  .signup__form {
+    padding: 2.5rem;
+    background: #fafafa;
+  }
+  
+  label {
+    font-size: .85rem;
+    text-transform: uppercase;
+    color: #ccc;
+    margin-bottom: 0px !important;
+  }
+
+  .form-group{
+    padding-bottom: 0% !important;
+    /* text-align: center; */
+  }
+  
+  .form-control {
+    background-color: transparent;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+  .form-control:focus {
+    border-color: #111;
+  }
+
+  span{
+    font-size: 12px !important;
+  }
+  
+  [type="text"] {
+    color: #111;
+  }
+  
+  [type="password"] {
+    color: #111;
+  }
+  
+  input:focus:required:invalid {
+    border: 2px solid red;
+  }
+
+  .btn--form {
+    padding: .5rem 2.5rem;
+    font-size: .95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    background: #111;
+    border-radius: 2.1875rem;
+  }
+  .btn--form:focus, .btn--form:hover {
+    background: #323232;
+  }
+  
+  .signup__link {
+    font-size: .8rem;
+    font-weight: 600;
+    text-decoration: underline;
+    color: #999;
+  }
+  .signup__link:focus, .signup__link:hover {
+    color: #787878;
+  }
+
+  .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }

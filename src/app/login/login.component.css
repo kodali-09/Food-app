@@ -1,0 +1,128 @@
+body {
+    font: 100% / 1.414 "Open Sans", "Roboto", arial, sans-serif;
+    background: #e9e9e9;
+  }
+  
+  a,
+  [type="submit"] {
+    -webkit-transition: all .25s ease-in;
+    transition: all .25s ease-in;
+  }
+  
+  .signup__container {
+    position: absolute;
+    top:7%;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+    width: 50rem;
+    height: 30rem;
+    border-radius: 0.1875rem;
+    box-shadow: 0px 0.1875rem 0.4375rem rgba(0, 0, 0, 0.25);
+  }
+  .signup__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container__child {
+    width: 50%;
+    height: 100%;
+    color: #fff;
+  }
+  
+  .signup__thumbnail {
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+            align-items: center;
+    background: url(https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&w=1000&q=80);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+  }
+  .thumbnail__logo,
+  .thumbnail__content,
+  .thumbnail__content {
+      margin-left: 50px;
+    align-self: center;
+  }
+  h1,
+  h2 {
+    font-weight: 300;
+    color: white;
+  }
+  
+  .heading--primary {
+    font-size: 1.999rem;
+  }
+  
+  .heading--secondary {
+    font-size: 1.414rem;
+  }
+  
+  
+  .signup__form {
+    padding: 2.5rem;
+    background: #fafafa;
+  }
+  
+  label {
+    font-size: .85rem;
+    text-transform: uppercase;
+    color: #ccc;
+  }
+  
+  .form-control {
+    background-color: transparent;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+  .form-control:focus {
+    border-color: #111;
+  }
+  
+  [type="text"] {
+    color: #111;
+  }
+  
+  [type="password"] {
+    color: #111;
+  }
+  
+  .btn--form {
+    padding: .5rem 2.5rem;
+    font-size: .95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    background: #111;
+    border-radius: 2.1875rem;
+  }
+  .btn--form:focus, .btn--form:hover {
+    background: #323232;
+  }
+  
+  .signup__link {
+    font-size: .8rem;
+    font-weight: 600;
+    text-decoration: underline;
+    color: #999;
+  }
+  .signup__link:focus, .signup__link:hover {
+    color: #787878;
+  }
